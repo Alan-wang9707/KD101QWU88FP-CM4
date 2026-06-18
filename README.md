@@ -1,0 +1,2 @@
+# KD101QWU88FP-CM4
+使用cm4点亮HX8279Driver_IC屏幕
