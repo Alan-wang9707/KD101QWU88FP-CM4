@@ -1,0 +1,70 @@
+/*
+ * vc4-kms-dsi-hx8279-10inch-overlay.dts
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+	compatible = "brcm,bcm2711";
+
+
+    fragment@0 {
+        target = <&dsi0>;
+        __overlay__ {
+            status = "disabled";
+        };
+    };
+
+
+	dsi_frag: fragment@1 {
+    target = <&dsi1>;
+    __overlay__  {
+        #address-cells = <1>;
+        #size-cells = <0>;
+        status = "okay";
+        
+
+        port {
+            dsi_out: endpoint {
+                remote-endpoint = <&panel_in>;
+            };
+        };
+
+        dsi_panel: dsi_panel@0 {
+            reg = <0>;
+            compatible = "kdxs,himax8279";
+            reset-gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
+
+			disable-runtime-pm;  
+
+            port {
+                panel_in: endpoint {
+                    remote-endpoint = <&dsi_out>;
+                };
+            };
+        };
+    };
+};
+
+	fragment@2 {
+		target = <&i2c0if>;
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@3 {
+		target = <&i2c0mux>;
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	__overrides__ {
+		dsi0 = <&dsi_frag>, "target:0=",<&dsi0>;
+		rotation = <&dsi_panel>, "rotation:0";
+	};
+};
