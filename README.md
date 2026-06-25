@@ -2,7 +2,7 @@
 KD101WU88FP\
 How to use cm4 driver a 10.1 inch 1200*1920 display and touch panel（HX8279+GT928)\
 We provide industrial tft lcd and touch panel, and made a convert board to connect our panel to CM4/CM5 directly.\
-<img width="425" height="58" alt="image" src="https://github.com/user-attachments/assets/677e2c1c-a3a4-4136-8d96-9307796879a9" />\
+<img width="666" height="57" alt="image" src="https://github.com/user-attachments/assets/fc5a686e-413c-4123-8c19-01792ad774a7" />\
 (https://www.kadidisplay.com/products/10-1-inch-12001920-dsi-mipi-display-for-raspberry-pi%ef%bc%88cm4-cm5%ef%bc%89/)
 # Software
 # Step 1：
