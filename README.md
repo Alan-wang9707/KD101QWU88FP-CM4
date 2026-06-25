@@ -25,7 +25,7 @@ We provide industrial tft lcd and touch panel, and made a convert board to conne
 · sudo depmod -a
 #  Step 6：
 · Simply modify your config.txt file and add the corresponding dtoverlay.\
-<img width="430" height="37" alt="image" src="https://github.com/user-attachments/assets/b3614f7d-3b32-4d8c-ab12-3a92414466ce" />
+<img width="426" height="35" alt="image" src="https://github.com/user-attachments/assets/80cced2c-e80e-4b28-bc36-585923dc2ceb" />
 
 # Note:
 Kadi Display is a solutions-oriented display provider. We offer in-house production and design of LCD and touch panels, along with Raspberry Pi-ready display drivers, enabling developers and customers to quickly deploy and implement their applications.
