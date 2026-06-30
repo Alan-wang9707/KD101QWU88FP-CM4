@@ -1,5 +1,5 @@
 # Hardware 
-KD101WU88FP\
+KD101WU88FP-FC101\
 How to use cm4 driver a 10.1 inch 1200*1920 display and touch panel（HX8279+GT928)\
 We provide industrial tft lcd and touch panel, and made a convert board to connect our panel to CM4/CM5 directly.\
 <img width="666" height="57" alt="image" src="https://github.com/user-attachments/assets/fc5a686e-413c-4123-8c19-01792ad774a7" />\
