@@ -1,0 +1,77 @@
+/*
+ * vc4-kms-dsi-hx8279-10inch-overlay.dts
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+	compatible = "brcm,bcm2711";
+
+    // 第一步：彻底禁用DSI0，从根源解决绑定问题
+    fragment@0 {
+        target = <&dsi0>;
+        __overlay__ {
+            status = "disabled";
+        };
+    };
+
+
+	dsi_frag: fragment@1 {
+    target = <&dsi1>;
+    __overlay__  {
+        #address-cells = <1>;
+        #size-cells = <0>;
+        status = "okay";
+        
+        // 6.12.75内核新参数：禁用DSI1的运行时电源管理
+        runtime-pm = <0>;
+        // 强制保持DSI PHY始终上电
+    	power-always-on;
+
+        port {
+            dsi_out: endpoint {
+                remote-endpoint = <&panel_in>;
+            };
+        };
+
+        dsi_panel: dsi_panel@0 {
+            reg = <0>;
+            compatible = "kdxs,himax8279";
+            reset-gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
+            backlight = <&rpi_backlight>;
+            
+			disable-runtime-pm;  // 禁用运行时电源管理
+
+            port {
+                panel_in: endpoint {
+                    remote-endpoint = <&dsi_out>;
+                };
+            };
+        };
+    };
+};
+
+	fragment@2 {
+		target = <&i2c0if>;
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@3 {
+		target = <&i2c0mux>;
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	#include "kdxs-backlight.dtsi"
+
+	__overrides__ {
+		dsi0 = <&dsi_frag>, "target:0=",<&dsi0>;
+		rotation = <&dsi_panel>, "rotation:0";
+	};
+};
